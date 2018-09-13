@@ -1,0 +1,523 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+
+@section AreaHead {
+
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css")" />
+
+    <style>
+
+        html, body {
+            width: 100%;
+        }
+
+        .msgAbsoluta {
+            position: absolute;
+            top: 40%;
+            height: 100px;
+            color: white;
+            background: blue;
+        }
+    </style>
+
+}
+
+<!-- Content Header (Page header) -->
+@section Breadcumb {
+
+
+    <h1>
+        Estados
+        <small>Cadastro</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Estados</li>
+    </ol>
+
+
+}
+
+
+
+<div class="box box-primary">
+
+    <div class="box-header with-border" style="text-align: center;">
+        <h3 class="box-title">Estado</h3>
+    </div>
+
+    <div class="box-body">
+
+        <form class="form-horizontal">
+
+
+            <div class="row">
+                <div class="form-group">
+
+                    <div class="col-sm-2"></div>
+
+                    <label for="inputEmail3" class="col-sm-2 control-label">Nome:</label>
+
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="nomePesquisa" id="nomePesquisa" placeholder="Nome" maxlength="22" />
+                    </div>
+
+                    <div class="col-sm-4"></div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+
+                    <div class="col-sm-2"></div>
+
+                    <label for="inputPassword3" class="col-sm-2 control-label">Sigla:</label>
+
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" name="siglaPesquisa" id="siglaPesquisa" placeholder="Sigla" maxlength="2" style="min-width: 60px; max-width: 60px;" />
+                    </div>
+
+                    <div class="col-sm-6"></div>
+
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+        <div class="row">
+            <div class="col-sm-4"> </div>
+            <div class="col-sm-4" style="text-align: center;">
+                <button type="button" id="botaoPesquisar" class="btn btn-primary">  <i class="glyphicon glyphicon-search"></i> Pesquisar</button>
+            </div>
+            <div class="col-sm-4"> </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="box box-primary">
+
+    <div class="box-header" style="text-align:center;">
+        <h3 class="box-title">Estados - Resultado Busca</h3>
+    </div>
+
+    <div class="box-body">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" id="botao"><i class="glyphicon glyphicon-list"></i> Escolher Colunas</button>
+        <br /><br />
+        <table id="tblEstados" class="table table-bordered table-striped table-responsive">
+            <thead style="background: #3385ff; color: white;">
+                <tr>
+                    <th>Nome</th>
+                    <th>Sigla</th>
+                    <th>Operações</th>
+                </tr>
+            </thead>
+            <tbody id="corpoTabela"></tbody>
+        </table>
+    </div>
+
+</div>
+
+
+
+
+<div class="modal fade" id="modalEdicao" role="dialog">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header" style="text-align: center; background: #3385ff; color: white;">
+                <button type="button" class="close" data-dismiss="modal" id="edicaoFechar">&times;</button>
+                <h3 class="box-title">Estado</h3>
+            </div>
+
+            <div class="modal-body">
+
+                <form id="formularioEdicao" action="@Url.Action("Editar")">
+                    <input type="reset" style="display: none;" id="resetEdicao" value="resetar" />
+                    <div class="row form-group" id="gurupocategoriaId">
+
+                        <div class="col-sm-3"></div>
+
+                        <label for="categoriaId" class="col-sm-2 control-label">Id</label>
+
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="idEstado" id="idEstado" placeholder="categoriaId" readonly />
+                            <div class="help-block" id="msgcategoriaId"></div>
+                        </div>
+
+                        <div class="col-sm-5"> </div>
+                    </div>
+
+                    <div class="row form-group" id="gruponome">
+
+                        <div class="col-sm-3"></div>
+
+                        <label for="nome" class="col-sm-2 control-label">Nome:</label>
+
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="nome" id="nome" maxlength="22" placeholder="Nome" />
+                            <div class="help-block" id="msgnome"></div>
+                        </div>
+
+                        <div class="col-sm-3"> </div>
+                    </div>
+
+                    <div class="row form-group" id="gruposigla">
+
+                        <div class="col-sm-3"></div>
+
+                        <label for="sigla" class="col-sm-2 control-label">Sigla:</label>
+
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="sigla" id="sigla" placeholder="Sigla" maxlength="2" style="min-width: 60px; max-width: 60px;" />
+                        </div>
+
+                        <div class="col-sm-5"><div class="help-block" id="msgsigla"></div> </div>
+
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="botaoGravar" class="btn btn-primary">  <i class="glyphicon glyphicon-floppy-disk"></i> &nbspGravar </button>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="modal fade" id="modalMensagem">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header" style="text-align: center;background: #3385ff; color: white;">
+                <h3 id="modalMsgTitulo">Titulo da modal</h3>
+            </div>
+
+            <div class="modal-body" id="modalMsgConteudo">
+                <p> conteudo da modal </p>
+            </div>
+
+            <div class="modal-footer">
+                <button id="btnOkModal" class="btn btn-success" data-dismiss="modal">OK</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalAguarde" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header" style="text-align: center; background: #3385ff; color: white;">
+                <h4 class="modal-title">Progresso</h4>
+            </div>
+
+            <div class="modal-body" style="text-align:center">
+
+                <img style="width: 100px; height: 100px;" src="@Url.Content("~/Scripts/admin/dist/img/carregando.gif")" />
+                <h3>Aguarde...</h3> <br />
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="modalColunas" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-header" style="text-align: center;background: #3385ff; color: white;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Selecione as colunas</h4>
+            </div>
+
+            <div class="modal-body" style="text-align: center;">
+
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" class="minimal" id="escondeNome">
+                        Nome
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" class="minimal" id="escondeSigla">
+                        Sigla
+                    </label>
+                </div>
+
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="botaoEscolher">Aplicar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+@section AreaScript {
+    <script src="@Url.Content("~/Scripts/admin/bower_components/datatables.net/js/jquery.dataTables.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/customScript/validador.js")"></script>
+
+    <script>
+
+        var validador = null;
+
+        $(document).ready(function () {
+
+            var tabela = null;
+
+            validador = criarValidador("#formularioEdicao",
+                {
+                    categoriaId: {
+                        required: true,
+                        number: true
+                    },
+                    nome: {
+                        required: true,
+                        maxlength: 22
+                    },
+                    sigla: {
+                        required: true,
+                        maxlength: 2
+                    }
+                });
+
+
+            tabela = iniciaDataTable('#tblEstados');
+
+            $("#botaoEscolher").click(function () {
+                var listaAtiva = [0, 0];
+                var contadorDesativa = 0;
+
+                listaAtiva[0] = $("#escondeNome").prop("checked");
+                listaAtiva[1] = $("#escondeSigla").prop("checked");
+                for (cont = 0; cont < listaAtiva.length; cont++)
+                    contadorDesativa += !listaAtiva[cont];
+
+                if (contadorDesativa == 2)
+                    listaAtiva[0] = 1;
+
+                for (cont = 0; cont < listaAtiva.length; cont++) {
+                    coluna = tabela.column(cont);
+                    if (listaAtiva[cont] == 0) {
+                        if (coluna.visible())
+                            coluna.visible(false);
+                    }
+                    else {
+                        if (! coluna.visible())
+                            coluna.visible(true);
+                    }
+                }
+
+            });
+
+            $("#botaoPesquisar").click(function () {
+
+                abrirModalAguarde();
+
+                $.ajax({
+                    type: "post",
+                    url: "@Url.Action("BuscaEstado")",
+                    dataType: "json",
+                    data: { nome: $("#nomePesquisa").val(), sigla: $("#siglaPesquisa").val() },
+                    success: function (dados) {
+                        console.log(dados);
+                        if (dados.Sucesso) {
+
+                            tabela.clear().draw();
+
+                            for (cont = 0; cont < dados.ListaRetorno.Data.length; cont++) {
+                                tabela.row.add([dados.ListaRetorno.Data[cont].nome, dados.ListaRetorno.Data[cont].sigla, "<button type=\"button\" class=\"btn btn-default btn-sm\" title=\"Editar\" onclick=\"editarEstado(" + dados.ListaRetorno.Data[cont].id + ")\"><i class=\"glyphicon glyphicon-pencil\"></i></button>"]).draw();
+                            }
+
+                        }
+                        fecharModalAguarde();
+                    },
+                    error: function (req, erro, status) {
+                        alert("Falha ao consultar banco de dados");
+                        console.log(req);
+                        console.log(erro);
+                        console.log(status);
+                        fecharModalAguarde();
+                    }
+                });
+
+            });
+
+
+            $("#escondeNome").click();
+            $("#escondeSigla").click();
+
+            $("#resetEdicao").click(function () {
+                var lista = $("#formularioEdicao div.form-group");
+                var listaMsg = $("#formularioEdicao").find("div.help-block");
+
+                $("#formularioEdicao").validate().resetForm();
+
+                for (cont = 0; cont < lista.length; cont++)
+                    $(lista[cont]).removeClass("has-error");
+
+                for (cont = 0; cont < listaMsg.length; cont++)
+                    $(listaMsg[cont]).html("");
+            });
+
+            $("#msgAbsoluta").hide();
+
+            $("#botaoGravar").click(function () {
+
+
+                if ($("#formularioEdicao").valid()) {
+                    console.log("Foi validado");
+                    $.ajax({
+                        type: "post",
+                        dataType: "json",
+                        data: $("#formularioEdicao").serialize(),
+                        url: "@Url.Action("SalvarEstado")",
+                        success: function (dados) {
+                            if (dados.Sucesso) {
+
+                                $("#modalEdicao").css("visibility", "hidden");
+
+                                $("#modalMsgConteudo").html("Gravado com sucesso !");
+                                $("#modalMsgTitulo").html("Salvando...");
+                                $('#modalMensagem').modal({
+                                    backdrop: 'static',
+                                    keyboard: false
+                                }).one("click", "#btnOkModal", function (e) {
+                                    $("#modalEdicao").modal('hide');
+                                    setTimeout(function () {
+                                        $("#modalEdicao").css("visibility", "visible");
+                                    },1000);
+                                });
+
+                            }
+                        },
+                        error: function (req, erro, msg) {
+                            alert("Falha no servidor");
+                            console.log(req);
+                            console.log(erro);
+                            console.log(msg);
+                        }
+                    });
+                }
+
+            });
+
+            $("#menuInicial").addClass("active");
+
+        });
+
+
+        function abrirModalEdicao() {
+            //alert("aqui");
+            $("#modalEdicao").modal("show");
+        }
+
+        function abrirModalAguarde() {
+            $('#modalAguarde').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+        }
+
+        function fecharModalAguarde() {
+            $('#modalAguarde').modal('hide');
+        }
+
+        function editarEstado(id) {
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: "@Url.Action("GetEstado")",
+                data: {id: id},
+                success: function (dados) {
+                    if (dados.Sucesso) {
+                        $("#resetEdicao").click();
+
+                        $("#idEstado").val(dados.ListaRetorno.Data.id);
+                        $("#nome").val(dados.ListaRetorno.Data.nome);
+                        $("#sigla").val(dados.ListaRetorno.Data.sigla);
+                        abrirModalEdicao();
+                    }
+                },
+                error: function (req, erro, solicitacao) {
+                    console.log(req);
+                    console.log(erro);
+                    console.log(solicitacao);
+                    alert("Erro");
+                }
+            });
+        }
+
+        function mostrarMensagemModal(mensagem, titulo) {
+            //$("html, body").animate({ scrollTop: 0 }, "slow");
+            $("#modalMsgConteudo").html(mensagem);
+            $("#modalMsgTitulo").html(titulo);
+
+            $('#modalMensagem').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+
+        }
+
+        function mostraMsgAbsoluta(mensagem, tipo) {
+
+            var classeAdicionar;
+
+            switch (tipo) {
+                case "sucesso":
+                    classeAdicionar = "msgAbsolutaSucesso";
+                    break;
+                case "erro":
+                    classeAdicionar = "msgAbsolutaErro";
+                    break;
+                default:
+                    console.log("Falha");
+            }
+
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+
+            $("#msgAbsoluta").addClass(/*"msgAbsolutaSucesso"*/classeAdicionar);
+            $("#msgAbsoluta").fadeIn();
+            $("#idTeste").html(mensagem);
+            setTimeout(function () { $("#msgAbsoluta").fadeOut(); $("#msgAbsoluta").removeClass("msgAbsolutaSucesso"); }, 2000);
+        }
+
+
+    </script>
+}
