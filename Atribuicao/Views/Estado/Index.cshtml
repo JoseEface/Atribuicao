@@ -3,15 +3,46 @@
     Layout = "~/Views/Shared/_AdminModelo2.cshtml";
 }
 
-@section Breadcumb {
+@section CSSPagina {
+    <!-- page specific plugin styles -->
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/ace-master/assets/css/jquery-ui.custom.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/ace-master/assets/css/chosen.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/ace-master/assets/css/bootstrap-datepicker3.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/ace-master/assets/css/bootstrap-timepicker.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/ace-master/assets/css/daterangepicker.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/ace-master/assets/css/bootstrap-datetimepicker.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/ace-master/assets/css/bootstrap-colorpicker.min.css")" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css" />
 
-    <ul class="breadcrumb">
-        <li>
-            <i class="ace-icon fa fa-home home-icon"></i>
-            <a href="#">Sobre</a>
-        </li>
-        <li class="active">Sobre</li>
-    </ul>
+}
+
+@section EstiloPagina {
+
+    <style>
+
+        .dataTables_wrapper .dt-buttons {
+            float: none;
+            text-align: left;
+            padding-left: 5px;
+            padding-bottom: 5px;
+            padding-top: 5px;
+        }
+
+            .dataTables_wrapper .dt-buttons .dt-button {
+                background: #6fa5f2;
+                /*background: rgb(135,184,127);*/
+                /*width: 80px;
+        height: 35px;*/
+                color: white;
+                font-size: 12px;
+            }
+
+                .dataTables_wrapper .dt-buttons .dt-button:hover {
+                    background: lightblue;
+                    /*background: rgb(98,155,88);*/
+                }
+    </style>
 
 }
 
@@ -23,25 +54,57 @@
             cadastro de estados
         </small>
     </h1>
-
-    <style>
-
-        #tblEstados {
-            border: 1px solid lightgray;
-        }
-
-            #tblEstados th {
-                background-color: #383fc3;
-                /*background-color: #243493;*/
-                color: white;
-            }
-    </style>
 }
+
+@section JSPluginsExterno {
+
+    <script src="@Url.Content("~/Scripts/ace-master/assets/js/jquery-ui.custom.min.js")" )"></script>
+    <script src="@Url.Content("~/Scripts/ace-master/assets/js/jquery.ui.touch-punch.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/ace-master/assets/js/chosen.jquery.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/ace-master/assets/js/spinbox.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/ace-master/assets/js/bootstrap-datepicker.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/ace-master/assets/js/bootstrap-timepicker.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/ace-master/assets/js/moment.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/ace-master/assets/js/daterangepicker.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/ace-master/assets/js/bootstrap-datetimepicker.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/ace-master/assets/js/bootstrap-colorpicker.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/ace-master/assets/js/jquery.knob.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/ace-master/assets/js/autosize.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/ace-master/assets/js/jquery.inputlimiter.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/ace-master/assets/js/jquery.maskedinput.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/ace-master/assets/js/bootstrap-tag.min.js")"></script>
+
+
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+
+
+}
+
+
+@section Breadcumb {
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="#">Estado</a>
+        </li>
+        <li class="active">Estado</li>
+    </ul>
+
+}
+
 
 
 <div class="widget-box">
     <div class="widget-header">
-        <h4 class="widget-title">Categoria</h4>
+        <h4 class="widget-title">Estado</h4>
     </div>
 
     <div class="widget-body">
@@ -70,15 +133,15 @@
                 <div class="form-group">
                     <label class="col-sm-4 col-xs-12 control-label no-padding-right" for="nome"> Sigla </label>
 
-                    <div class="col-sm-2 col-xs-12">
-                        <input type="text" id="nomeCategoria" name="nomeCategoria" style="min-width: 50px;" placeholder="Sigla" class="col-xs-12 col-sm-4" />
+                    <div class="col-sm-8 col-xs-12">
+                        <input type="text" id="nomeCategoria" name="nomeCategoria" style="min-width: 50px; max-width: 50px;" placeholder="Sigla" class="col-xs-12 col-sm-2" />
                     </div>
-                    <div class="col-sm-6 col-xs-5"></div>
 
 
-                    <div class="col-sm-4 col-xs-5">
+
+                    <div class="col-xs-0 col-sm-4">
                     </div>
-                    <div class=" col-sm-8 col-xs-7">
+                    <div class="col-xs-12 col-sm-8">
                         <span class="help-block">Mensagem de validação</span>
                     </div>
 
@@ -103,277 +166,190 @@
 <br /><br />
 
 
-<!--PAINEL DE BUSCA ESTADOS-->
-
+<!--INICIO DO RESULTADO DE BUSCA-->
 <div class="widget-box">
+
     <div class="widget-header">
-        <h4 class="widget-title">Estados</h4>
+        <h4 class="widget-title">Cidade - Resultados da busca</h4>
     </div>
 
     <div class="widget-body">
-        <div class="widget-main no-padding">
-            <form>
-                <!-- <legend>Form</legend> -->
-                <fieldset>
+        <div class="widget-main padding">
+            <table id="example" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Estado</th>
+                        <th>Sigla</th>
+                        <th>Operações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Garrett Winters</td>
+                        <td>Accountant</td>
+                        <td><button type="button" onclick="javascript:EditarEstado()"><span class="glyphicon glyphicon-pencil"></span>Ed </button></td>
+                    </tr>
+                    <tr>
+                        <td>Garrett Winters</td>
+                        <td>Accountant</td>
+                        <td><button type="button"><span class="glyphicon glyphicon-pencil"></span> </button></td>
+                    </tr>
+                    <tr>
+                        <td>Garrett Winters</td>
+                        <td>Accountant</td>
+                        <td><button type="button"><span class="glyphicon glyphicon-pencil"></span> </button></td>
+                    </tr>
+                    <tr>
+                        <td>Garrett Winters</td>
+                        <td>Accountant</td>
+                        <td><button type="button"><span class="glyphicon glyphicon-pencil"></span> </button></td>
+                    </tr>
+                    <tr>
+                        <td>Garrett Winters</td>
+                        <td>Accountant</td>
+                        <td><button type="button"><span class="glyphicon glyphicon-pencil"></span> </button></td>
+                    </tr>
+                    <tr>
+                        <td>Garrett Winters</td>
+                        <td>Accountant</td>
+                        <td><button type="button"><span class="glyphicon glyphicon-pencil"></span> </button></td>
+                    </tr>
+                    <tr>
+                        <td>Garrett Winters</td>
+                        <td>Accountant</td>
+                        <td><button type="button"><span class="glyphicon glyphicon-pencil"></span> </button></td>
+                    </tr>
+                    <tr>
+                        <td>Garrett Winters</td>
+                        <td>Accountant</td>
+                        <td><button type="button"><span class="glyphicon glyphicon-pencil"></span> </button></td>
+                    </tr>
+                    <tr>
+                        <td>Garrett Winters</td>
+                        <td>Accountant</td>
+                        <td><button type="button"><span class="glyphicon glyphicon-pencil"></span> </button></td>
+                    </tr>
+                    <tr>
+                        <td>Garrett Winters</td>
+                        <td>Accountant</td>
+                        <td><button type="button"><span class="glyphicon glyphicon-pencil"></span> </button></td>
+                    </tr>
+                </tbody>
+            </table>
 
-                    <div class="row">
-                        <div class="col-sm-2"></div>
-                        <label for="inputEmail3" class="col-sm-2 control-label" style="text-align: right;">Nome:</label>
 
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" name="nomePesquisa" id="nomePesquisa" placeholder="Nome" maxlength="22" />
-                        </div>
-
-                        <div class="col-sm-4"></div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-2"></div>
-                        <label for="inputEmail3" class="col-sm-2 control-label" style="text-align: right;"></label>
-
-                        <div class="col-sm-4">
-                            <span class="help-block" style="color: red;"> </span>
-                        </div>
-
-                        <div class="col-sm-4"></div>
-                    </div>
+        </div>
 
 
-                    <div class="row">
-                        <div class="col-sm-2"></div>
+    </div>
 
-                        <label for="inputPassword3" class="col-sm-2 control-label" style="text-align: right;">Sigla:</label>
+</div>
+<!--FIM RESULTADO DE BUSCA-->
+<!-- MODAL DE SELEÇÂO DE COLUNAS -->
+<div class="modal fade" id="ModalColunas">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Selecione as colunas</h4>
+            </div>
+            <div class="modal-body">
 
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" name="siglaPesquisa" id="siglaPesquisa" placeholder="Sigla" maxlength="2" style="min-width: 60px; max-width: 60px;" />
-                        </div>
-
-                        <div class="col-sm-6"></div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-2"></div>
-                        <label for="inputEmail3" class="col-sm-2 control-label" style="text-align: right;"></label>
-
-                        <div class="col-sm-4">
-                            <span class="help-block" style="color: red;"> </span>
-                        </div>
-
-                        <div class="col-sm-4"></div>
-                    </div>
-
-                </fieldset>
-
-                <div class="form-actions center">
-                    <button type="button" class="btn btn-sm btn-success">
-                        <i class="ace-icon glyphicon glyphicon-floppy-disk"></i>
-                        Salvar
-                    </button>
+                <p>Desmarque para não exibir as colunas: </p>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="0">Estado</label>
                 </div>
-            </form>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="1">Sigla</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="2">Operação</label>
+                </div>
+            </div>
+            <div class="modal-footer" style="text-align: center;">
+                <button type="button" id="btnModalColunas" class="btn btn-primary" data-dismiss="modal">Selecionar</button>
+            </div>
         </div>
     </div>
 </div>
-
-<!-- FIM PAINEL DE BUSCA ESTADOS -->
-
-<br /><br />
+<!-- FIM MODAL DE SELEÇÂO DE COLUNAS -->
 
 
-<!-- PANEL DE RESULTADO DE BUSCA -->
-<div class="widget-box">
-    <div class="widget-header">
-        <h4 class="widget-title">Resultados da busca</h4>
-    </div>
+<div class="modal fade" id="ModalEdicaoEstado">
 
-    <div class="widget-body">
+    <div class="modal-dialog">
 
+        <div class="modal-content">
 
-        <div class="widget-main no-padding">
-
-            <form>
-
-                <fieldset>
-
-                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalColunasEstado" id="botao"><i class="glyphicon glyphicon-list"></i> Escolher Colunas</button>
-                    <br /><br />
-                    <table id="tblEstados" class="table table-bordered">
-                        <thead style="background: #3385ff; color: white;">
-                            <tr>
-                                <th>Nome</th>
-                                <th>Sigla</th>
-                                <th>Operações</th>
-                            </tr>
-                        </thead>
-                        <tbody id="corpoTabela">
-
-                            <tr>
-                                <td>Nome</td>
-                                <td>SP</td>
-                                <td>
-                                    <button type="button" class="btn btn-sm btn-success" data-target="#modalEstado" data-toggle="modal">
-                                        <i class="ace-icon glyphicon glyphicon-pencil"></i>
-                                    </button>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-
-
-                </fieldset>
-
-            </form>
-
-        </div>
-
-    </div>
-</div>
-
-<!-- FIM DE PANEL DE RESULTADO DE BUSCA -->
-<!--
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalEstado">Abrir</button>
--->
-<!-- MODAL DO FORMULÁRIO DE EDIÇÃO/INSERÇÃO -->
-
-<div id="modalEstado" class="modal fade" role="dialog">
-
-    <div class="modal-dialog modal-lg">
-        <form method="post" action="">
-            <div class="modal-content">
-
+            <form method="post" action="">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times</button>
-                    <h4>Estado</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Estado</h4>
                 </div>
                 <div class="modal-body">
 
-                    <input type="hidden" value="0" id="idEstado" name="idEstado" />
-
                     <div class="form-group">
-                        <div class="row">
-                            <div class="col-sm-2"></div>
-                            <label for="inputEmail3" class="col-sm-2 control-label" style="text-align: right;">Nome:</label>
-
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" name="nomePesquisa" id="nomePesquisa" placeholder="Nome" maxlength="22" />
-                            </div>
-
-                            <div class="col-sm-4"></div>
-                        </div>
+                        <label for="nomeCidade" class="control-label">
+                            Nome
+                        </label>
+                        <input type="text" class="form-control" id="nomeEstado" name="nomeEstado" placeholder="Nome estado"/>
                     </div>
 
                     <div class="form-group">
-                        <div class="row">
-                            <div class="col-sm-2"></div>
-                            <label for="inputEmail3" class="col-sm-2 control-label" style="text-align: right;"></label>
+                        <span class="help-block" id="erronomeEstado">Mensagem de erro</span>
+                    </div>
 
-                            <div class="col-sm-4">
-                                <span class="help-block" style="color:red;"></span>
-                            </div>
-
-                            <div class="col-sm-4"></div>
-                        </div>
+                    <div class="form-group">
+                        <label for="nomeSigla" class="control-label">
+                            Sigla
+                        </label>
+                        <input type="text" class="form-control" id="nomeSigla" name="nomeSigla" style="width: 50px;" placeholder="Sigla" />
                     </div>
 
 
                     <div class="form-group">
-                        <div class="row">
-                            <div class="col-sm-2"></div>
-
-                            <label for="inputPassword3" class="col-sm-2 control-label" style="text-align: right;">Sigla:</label>
-
-                            <div class="col-sm-2">
-                                <input type="text" class="form-control" name="siglaPesquisa" id="siglaPesquisa" placeholder="Sigla" maxlength="2" style="min-width: 60px; max-width: 60px;" />
-                            </div>
-
-                            <div class="col-sm-6"></div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-sm-2"></div>
-
-                            <label for="inputPassword3" class="col-sm-2 control-label" style="text-align: right;"></label>
-
-                            <div class="col-sm-2">
-                                <span class="help-block" style="color: red;"></span>
-                            </div>
-
-                            <div class="col-sm-6"></div>
-                        </div>
+                        <span class="help-block" id="erronomeEstado">Mensagem de erro</span>
                     </div>
 
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="btnSalvar">Salvar</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal" id="btnCancelar">Cancelar</button>
+                    <button type="button" id="btnSalvarCidade" class="btn btn-primary" data-dismiss="modal">Selecionar</button>
                 </div>
-
-            </div>
-        </form>
-    </div>
-
-</div>
-
-<!-- FIM DO MODAL DE EDIÇÃO E INSERÇÃO -->
-<!--
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalColunasEstado">
-    Abrir modal de filtro
-</button>
--->
-<!-- INICIO MODAL DE AJUSTE DE COLUNAS DATA TABLE -->
-
-<div id="modalColunasEstado" class="modal fade" role="dialog" style="">
-
-    <div class="modal-dialog">
-
-
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times</button>
-                <h4>Selecionar colunas</h4>
-            </div>
-
-            <div class="modal-body">
-
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" class="minimal" id="escondeNome">
-                        Nome
-                    </label>
-                </div>
-
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" class="minimal" id="escondeSigla">
-                        Sigla
-                    </label>
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Filtrar</button>
-            </div>
+            </form>
 
         </div>
 
-
     </div>
 
 </div>
 
 
-<!-- FIM DO MODAL DE AJUSTE DE COLUNAS DO DATATABLE -->
 
 @section AreaScript {
+    <script src="@Url.Content("~/Scripts/customScript/validador.js")"></script>
     <script>
+        var table = null;
+
         $(document).ready(function () {
+
+            table = iniciaDataTable("#example", "#ModalColunas");
+
+            table.button().add(1, { extend: "print", text: "Imprimir", exportOptions: { columns: [0, 1, 2] } });
+            table.button().add(1, { extend: "copy", text: "Copiar", exportOptions: { columns: [0, 1, 2] } });
+            table.button().add(1, { extend: "csv", text: "CSV", exportOptions: { columns: [0, 1, 2] } });
+            table.button().add(1, { extend: "excel", text: "Excel", exportOptions: { columns: [0, 1, 2] } });
+            table.button().add(1, { extend: "pdf", text: "PDF", exportOptions: { columns: [0, 1, 2] } });
+
             $("#menuCadastro").addClass("active open");
             $("#subMenuEstado").addClass("active");
         });
+
+        function EditarEstado() {
+            //TODO
+            //Editar Cidade - ajax post
+
+            $("#ModalEdicaoEstado").modal();
+        }
     </script>
 }
