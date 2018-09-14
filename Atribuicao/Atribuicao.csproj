@@ -170,7 +170,9 @@
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\CidadeController.cs" />
     <Compile Include="Controllers\DisciplinaController.cs" />
+    <Compile Include="Controllers\EscolaController.cs" />
     <Compile Include="Controllers\EstadoController.cs" />
+    <Compile Include="Controllers\TipoEnsinoController.cs" />
     <Compile Include="Models\atpc.cs" />
     <Compile Include="Models\AtribuicaoDbContext.cs" />
     <Compile Include="Models\Atribuicao\AtribDBContext.cs" />
@@ -8941,9 +8943,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\TipoEnsino\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Escola\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
