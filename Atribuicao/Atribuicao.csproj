@@ -167,6 +167,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CargaHorariaController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\CidadeController.cs" />
     <Compile Include="Controllers\DisciplinaController.cs" />
@@ -8925,6 +8926,7 @@
     <Content Include="Views\Cidade\Index.cshtml" />
     <Content Include="Views\Categoria\Index.cshtml" />
     <Content Include="Views\Disciplina\Index.cshtml" />
+    <Content Include="Views\CargaHoraria\Index.cshtml" />
     <None Include="Views\Shared\_Admin.cshtml" />
     <None Include="Views\Shared\_AdminModelo2.cshtml" />
     <Content Include="Web.config">
